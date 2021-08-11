@@ -1,6 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('<h1>Cardapio</h1>')
+    pratos = {
+        1: 'Macarrão à Carbonara',
+        2: 'Hamburguer',
+        3: 'Pudim'
+    }
+    dados = {'nome_dos_pratos': pratos}
+
+    return render(request, 'index.html', dados)
+
+
+def cardapio(request):
+    return render(request, 'cardapio.html')
