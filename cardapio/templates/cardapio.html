@@ -64,13 +64,12 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <span>30 de Fevereiro, 2000</span>
-                            <h2>Nome da receita</h2>
+                            <span>{{ prato.date_prato }}</span>
+                            <h2>{{ prato.nome_prato }}</h2>
                             <div class="receipe-duration">
-                                <h6>Preparo: 15 minutos</h6>
-                                <h6>Rendimento: 2 porçoes</h6>
-                                <h6>Categoria: categoria</h6>
-                                <h6>Por: Pessoa</h6>
+                                <h6>Preço: R$ {{ prato.preco }} </h6>
+                                <h6>Rendimento: {{ prato.rendimento }}</h6>
+                                <h6>Categoria: {{ prato.categria }}</h6>
                             </div>
                         </div>
                     </div>
@@ -79,17 +78,16 @@
                     <div class="col-12 col-lg-8">
                         <!-- Single Preparation Step -->
                         <div class="single-preparation-step d-flex">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                            <p>{{ prato.modo_preparo }}</p>
                         </div>
                     </div>
 
                     <!-- Ingredientes -->
                     <div class="col-12 col-lg-4">
                         <div class="ingredients">
-                            <h4>Ingredientees</h4>
+                            <h4>Ingredientes</h4>
                             <div class="ingredients">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
-                            </p>
+                                <p>{{ prato.ingredientes }}</p>
                             </div>
                         </div>
                     </div>

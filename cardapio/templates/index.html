@@ -30,19 +30,22 @@
     <section class="best-receipe-area">
         <div class="container">
             <div class="row">
-                {% for chave, nome_do_prato in nome_dos_pratos.items %}
-                <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-best-receipe-area mb-30">
-                        <img src="{% static 'img/bg-img/foto_receita.png' %}" alt="">
-                        <div class="receipe-content">
-                            <a href="{% url 'cardapio' %}">
-                                <h5>{{ nome_do_prato }}</h5>
-                            </a>
+                {% if pratos %}
+                    {% for prato in pratos %}
+                    <!-- Single Best Receipe Area -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="single-best-receipe-area mb-30">
+                            <img src="{% static 'img/bg-img/foto_receita.png' %}" alt="">
+                            <div class="receipe-content">
+                                <a href="{% url 'cardapio' prato.id %}">
+                                    <h5>{{ prato.nome_prato }}</h5>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                {% endif %}
 
 
             </div>
