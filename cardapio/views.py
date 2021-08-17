@@ -3,7 +3,7 @@ from .models import Prato
 
 
 def index(request):
-    pratos = Prato.objects.all()
+    pratos = Prato.objects.order_by('-date_prato').filter(publicada=True)
     dados = {'pratos': pratos}
 
     return render(request, 'index.html', dados)
