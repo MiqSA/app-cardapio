@@ -1,8 +1,9 @@
 from django.db import models
 from datetime import datetime
-
+from pessoas.models import Pessoa
 
 class Prato(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     nome_prato = models.CharField(max_length=200)
     ingredientes = models.TextField()
     modo_preparo = models.TextField()
