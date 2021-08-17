@@ -1,16 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404, get_object_or_404
+from .models import Prato
 
 
 def index(request):
-    pratos = {
-        1: 'Macarrão à Carbonara',
-        2: 'Hamburguer',
-        3: 'Pudim'
-    }
-    dados = {'nome_dos_pratos': pratos}
+    pratos = Prato.objects.all()
+    dados = {'pratos': pratos}
 
     return render(request, 'index.html', dados)
 
 
-def cardapio(request):
-    return render(request, 'cardapio.html')
+def cardapio(request, prato_id):
+    prato = get_object_or_404(Prato, pk=prato_id)
+
+    prato_a_exibir = {
+        'prato': prato
+    }
+    return render(request, 'cardapio.html', prato_a_exibir)
