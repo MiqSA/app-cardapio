@@ -51,7 +51,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="receipe-slider owl-carousel">
-                        <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
+                        {% if prato.foto_prato == '' %}
+                            <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
+                        {% else %}
+                                <img src="{{ prato.foto_prato.url }}" alt="">
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -70,6 +74,7 @@
                                 <h6>Preço: R$ {{ prato.preco }} </h6>
                                 <h6>Rendimento: {{ prato.rendimento }}</h6>
                                 <h6>Categoria: {{ prato.categoria }}</h6>
+                                <h6>Chefe: {{ prato.pessoa }}</h6>
                             </div>
                         </div>
                     </div>
