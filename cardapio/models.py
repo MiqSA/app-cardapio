@@ -8,5 +8,5 @@ class Prato(models.Model):
     modo_preparo = models.TextField()
     preco = models.FloatField()
     rendimento = models.TextField(max_length=100)
-    categria = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100)
     date_prato = models.DateTimeField(default=datetime.now, blank=True)
