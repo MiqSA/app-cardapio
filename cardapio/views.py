@@ -19,4 +19,12 @@ def cardapio(request, prato_id):
 
 
 def buscar(request):
-    return render(request, 'buscar.html')
+    lista_pratos = Prato.objects.order_by('-date_prato').filter(publicada=True)
+
+    if 'buscar' in request.GET:
+        nome_a_buscar = request.GET['buscar']
+        if buscar:
+            lista_pratos = lista_pratos.filter(nome_prato__icontains=nome_a_buscar)
+
+    dados = {'pratos': lista_pratos}
+    return render(request, 'buscar.html', dados)
