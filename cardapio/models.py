@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from pessoas.models import Pessoa
 
+
 class Prato(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     nome_prato = models.CharField(max_length=200)
@@ -13,3 +14,6 @@ class Prato(models.Model):
     date_prato = models.DateTimeField(default=datetime.now, blank=True)
     foto_prato = models.ImageField(upload_to="fotos/%d/%m/%Y", blank=True)
     publicada = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.nome_prato
