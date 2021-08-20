@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 from cardapio.models import Prato
 
 
@@ -11,20 +11,20 @@ def cadastro(request):
         senha = request.POST['password']
         senha2 = request.POST['password2']
         if not nome.strip():
-            print('O campo nome não pode ficar em branco')
+            messages.error(request, 'O campo nome não pode ficar em branco')
             return redirect('cadastro')
         if not email.strip():
-            print('O campo email não pode ficar em branco')
+            messages.error(request, 'O campo email não pode ficar em branco')
             return redirect('cadastro')
         if senha != senha2:
-            print('Senha não são iguais')
+            messages.error(request, 'Senhas não são iguais')
             return redirect('cadastro')
         if User.objects.filter(email=email).exists():
-            print('Usuário já cadastrado')
+            messages.error(request, 'Usuário já cadastrado')
             return redirect('cadastro')
         user = User.objects.create_user(username=nome, email=email, password=senha)
         user.save()
-        print('Usuário cadastrado com sucesso')
+        messages.success(request, 'Usuário cadastrado com sucesso')
         return redirect('login')
     else:
         return render(request, 'usuarios/cadastro.html')
@@ -35,15 +35,14 @@ def login(request):
         email = request.POST['email']
         senha = request.POST['senha']
         if email == '' or senha == '':
-            print('Email e senha não podem ficar em branco')
+            messages.error(request, 'Email e senha não podem ficar em branco')
             return redirect('login')
-        print(email, senha)
         if User.objects.filter(email=email).exists():
             nome = User.objects.filter(email=email).values_list('username', flat=True).get()
             user = auth.authenticate(request, username=nome, password=senha)
             if user is not None:
-                auth.login(request,user)
-                print('login realizado com sucesso')
+                auth.login(request, user)
+                messages.success(request, 'Login realizado com sucesso')
                 return redirect('dashboard')
     else:
         return render(request, 'usuarios/login.html')
