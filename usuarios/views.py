@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
+from cardapio.models import Prato
 
 
 def cadastro(request):
@@ -55,10 +56,28 @@ def logout(request):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request, 'usuarios/dashboard.html')
+        id = request.user.id
+        pratos = Prato.objects.order_by('-date_prato').filter(pessoa=id)
+        dados = {'pratos': pratos}
+        return render(request, 'usuarios/dashboard.html', dados)
     else:
         return redirect('index')
 
 
 def cria_prato(request):
-    return render(request, 'usuarios/cria_prato.html')
+    if request.method == 'POST':
+        nome_prato = request.POST['nome_prato']
+        ingredientes = request.POST['ingredientes']
+        modo_preparo = request.POST['modo_preparo']
+        preco = request.POST['preco']
+        rendimento = request.POST['rendimento']
+        categoria = request.POST['categoria']
+        foto_prato = request.FILES['foto_prato']
+        user = get_object_or_404(User, pk=request.user.id)
+        prato = Prato.objects.create(pessoa=user, nome_prato=nome_prato, ingredientes=ingredientes,
+                                     modo_preparo=modo_preparo, preco=preco, rendimento=rendimento,
+                                     categoria=categoria, foto_prato=foto_prato)
+        prato.save()
+        return redirect('dashboard')
+    else:
+        return render(request, 'usuarios/cria_prato.html')
