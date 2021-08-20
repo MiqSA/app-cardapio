@@ -59,3 +59,6 @@ def dashboard(request):
     else:
         return redirect('index')
 
+
+def cria_prato(request):
+    return render(request, 'usuarios/cria_prato.html')
