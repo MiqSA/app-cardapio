@@ -16,7 +16,7 @@ def cadastro(request):
         if campo_vazio(email):
             messages.error(request, 'O campo email não pode ficar em branco')
             return redirect('cadastro')
-        if senha_nao_sao_iguais(senha,senha2):
+        if senha_nao_sao_iguais(senha, senha2):
             messages.error(request, 'Senhas não são iguais')
             return redirect('cadastro')
         if User.objects.filter(email=email).exists():
@@ -83,6 +83,12 @@ def cria_prato(request):
         return redirect('dashboard')
     else:
         return render(request, 'usuarios/cria_prato.html')
+
+
+def deleta_prato(request, prato_id):
+    prato = get_object_or_404(Prato, pk=prato_id)
+    prato.delete()
+    return redirect('dashboard')
 
 
 def campo_vazio(campo):

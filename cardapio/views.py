@@ -27,4 +27,4 @@ def buscar(request):
             lista_pratos = lista_pratos.filter(nome_prato__icontains=nome_a_buscar)
 
     dados = {'pratos': lista_pratos}
-    return render(request, 'buscar.html', dados)
+    return render(request, 'buscar.html', dados )
