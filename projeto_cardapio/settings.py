@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'usuarios',
-    'pessoas',
     'cardapio',
     'django.contrib.admin',
     'django.contrib.auth',
