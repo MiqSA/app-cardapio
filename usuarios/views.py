@@ -66,7 +66,6 @@ def dashboard(request):
         return redirect('index')
 
 
-
 def campo_vazio(campo):
     return not campo.strip()
 
