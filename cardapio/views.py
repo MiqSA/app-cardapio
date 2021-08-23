@@ -6,7 +6,7 @@ def index(request):
     pratos = Prato.objects.order_by('-date_prato').filter(publicada=True)
     dados = {'pratos': pratos}
 
-    return render(request, 'index.html', dados)
+    return render(request, 'pratos/index.html', dados)
 
 
 def cardapio(request, prato_id):
@@ -15,7 +15,7 @@ def cardapio(request, prato_id):
     prato_a_exibir = {
         'prato': prato
     }
-    return render(request, 'cardapio.html', prato_a_exibir)
+    return render(request, 'pratos/cardapio.html', prato_a_exibir)
 
 
 def buscar(request):
@@ -27,4 +27,4 @@ def buscar(request):
             lista_pratos = lista_pratos.filter(nome_prato__icontains=nome_a_buscar)
 
     dados = {'pratos': lista_pratos}
-    return render(request, 'buscar.html', dados )
+    return render(request, 'pratos/buscar.html', dados )

@@ -82,13 +82,13 @@ def cria_prato(request):
         prato.save()
         return redirect('dashboard')
     else:
-        return render(request, 'usuarios/cria_prato.html')
+        return render(request, 'pratos/cria_prato.html')
 
 
 def edita_prato(request, prato_id):
     prato = get_object_or_404(Prato, pk=prato_id)
     prato_a_editar = {'prato': prato}
-    return render(request, 'usuarios/edita_prato.html', prato_a_editar)
+    return render(request, 'pratos/edita_prato.html', prato_a_editar)
 
 
 def deleta_prato(request, prato_id):
