@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
-from cardapio.models import Prato
+from apps.cardapio.models import Prato
 
 
 def cadastro(request):
+    """"Cadastra uma nova pessoa no sistema."""
     if request.method == 'POST':
         nome = request.POST['nome']
         email = request.POST['email']
@@ -34,6 +35,7 @@ def cadastro(request):
 
 
 def login(request):
+    """"Loga pessoa no sistema."""
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
@@ -52,11 +54,13 @@ def login(request):
 
 
 def logout(request):
+    """"Logout de uma pessoa do sistema."""
     auth.logout(request)
     return redirect('index')
 
 
 def dashboard(request):
+    """"Mostra o cardapio."""
     if request.user.is_authenticated:
         id = request.user.id
         pratos = Prato.objects.order_by('-date_prato').filter(pessoa=id)
@@ -67,10 +71,12 @@ def dashboard(request):
 
 
 def campo_vazio(campo):
+    """"Verifica se um campo é vazio."""
     return not campo.strip()
 
 
 def senha_nao_sao_iguais(senha, senha2):
+    """"Verifica se duas senhas são iguais."""
     return senha != senha2
 
 
