@@ -2,11 +2,16 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404, redirec
 from cardapio.models import Prato
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
     pratos = Prato.objects.order_by('-date_prato').filter(publicada=True)
-    dados = {'pratos': pratos}
+    paginator = Paginator(pratos, 3)
+    page = request.GET.get('page')
+    pratos_por_pagina = paginator.get_page(page)
+
+    dados = {'pratos': pratos_por_pagina}
 
     return render(request, 'pratos/index.html', dados)
 
