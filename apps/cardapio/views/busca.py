@@ -1,4 +1,4 @@
-from cardapio.models import Prato
+from apps.cardapio.models import Prato
 from django.shortcuts import render
 
 

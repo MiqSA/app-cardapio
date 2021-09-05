@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
-from cardapio.models import Prato
+from django.shortcuts import render, get_object_or_404, redirect
+from apps.cardapio.models import Prato
 from django.contrib.auth.models import User
-from django.contrib import auth, messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 
 
 def index(request):
