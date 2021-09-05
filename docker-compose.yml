@@ -1,0 +1,35 @@
+version: '3.2'
+
+services:
+  web:
+    build:
+      dockerfile: .
+      context: .
+    image: python
+    container_name: python
+    ports:
+      - 8000:8000
+    networks:
+      - production-network
+    depends_on:
+      - db
+    command: >
+      sh -c "
+             pip3 install --upgrade pip
+             pip3 install -r requirements.txt
+             python3 manage.py migrate
+
+             python3 manage.py runserver 0.0.0.0:8000"
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - production-network
+
+
+networks:
+  production-network:
+    driver: bridge
