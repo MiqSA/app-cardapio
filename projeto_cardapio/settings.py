@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, sys
+
 from .config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,7 +81,8 @@ DATABASES = {
         'NAME': NAME,
         'USER': USER,
         'PASSWORD': PASSWORD,
-        'HOST': HOST
+        'HOST': HOST,
+        'PORT': PORT
     }
 }
 
@@ -141,3 +143,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
+
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))
