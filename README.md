@@ -1,6 +1,10 @@
-# Meu Cardápio
+# Cardápio do Dia
 
-Meu Cardápio é uma aplicação web para comercialização de pratos de forma simples e atraente ao cliente. Contempla um sistema de cadastro de usuário e de pratos. No cadastro de pratos o usuário pode inserir o nome do prato, imagem do prato, ingredientes e mais! O usuário pode ter vários pratos cadastrados e privados, ao decidir torná-lo público um usuário administrador publica tal prato na parte principal do site.
+Cardápio do Dia é uma aplicação web para comercialização de pratos de forma simples e atraente ao cliente. Contempla um sistema de cadastro de usuário e de pratos. No cadastro de pratos o usuário pode inserir o nome do prato, imagem do prato, ingredientes e mais! O usuário pode ter vários pratos cadastrados e privados, ao decidir torná-lo público um usuário administrador publica tal prato na parte principal do site.
+
+<p align="center">
+<img src="static/app.gif">
+</p>
 
 ## Tecnologias
 
@@ -22,7 +26,7 @@ $ cd app-cardapio
 # Garantir que o docker desktop está ativo.  
 
 # Subir aplicação pelo docker
-$ docker-compose up
+$ docker-compose up --build -d
 
 # A aplicação estará funcionando em http://localhost:8000/
 
@@ -31,12 +35,14 @@ $ docker-compose up
 # Digite o seguite comando.
  $ docker ps
 
-# Com comando anterior será mostrado informações dos containers. Grave o CONTAINER ID do container python e digite o seguinte comando. Onde o CONTAINER_ID refere-se ao container ativo. 
+# Com comando anterior será mostrado informações dos containers. 
+# Grave o CONTAINER ID do container python e digite o seguinte comando. 
 $ docker exec -it CONTAINER_ID python manage.py createsuperuser
 
 # Digite um usuário, email e senha.
 
-# Para entrar na aba de administrador basta ir em http://localhost:8000/admin  e entrar com usuário cadastrado anteriormente.
+# Para entrar na aba de administrador basta ir em http://localhost:8000/admin
+# Entrar com usuário cadastrado anteriormente.
 
 ```
 
